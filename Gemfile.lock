@@ -27,6 +27,12 @@ GIT
       spree_core (>= 0.40.3)
 
 PATH
+  remote: exportator
+  specs:
+    exportator (1.0.0)
+      spree_core (>= 0.40.3)
+
+PATH
   remote: importator
   specs:
     importator (1.0.0)
@@ -184,6 +190,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  exportator!
   importator!
   legal!
   products_visibility!

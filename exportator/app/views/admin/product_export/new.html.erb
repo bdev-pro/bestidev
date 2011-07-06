@@ -1,0 +1,6 @@
+<h1>Click to export the full catalogue</h1>
+<%= form_for(:product_export,  :url => admin_product_export_index_path, :method => :post, :html => { :multipart => true }) do |f| %>
+<p class="form-buttons">
+  <%= button t("actions.create") %>
+</p>
+<% end %>
