@@ -9,6 +9,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   font-family: inherit;
   vertical-align: baseline;
 }
+
+
 *:focus { outline: 0; }
 body {
   line-height: 1em;
@@ -283,6 +285,19 @@ body.two-col #wrapper { background-image: url(../images/wrapper-back-2_fer.png);
   overflow: hidden;
   display: block;
 }
+
+/* modif Luis */
+
+.container_cabe{
+  width:980px;
+  margin:0 auto;
+  overflow: hidden;
+  display:block;
+}
+
+/*fin*/
+
+
 #sidebar {
   display: inline;
   float: left;

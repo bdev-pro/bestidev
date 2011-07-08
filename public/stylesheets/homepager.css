@@ -15,3 +15,24 @@ input[type="button"].homepager {
         float: right;
 	margin: -30px 35px 15px 0px;
 }
+
+/*Cambios de Luis*/
+
+#mas_solicitados{
+   color:white;
+   background:#6e9459;
+   font-size:20px;
+   font-weight:bold;
+   border:2px solid black;
+   text-align:center;
+   -moz-box-shadow: 5px 5px 10px #888888; /* Firefox 3.6 and earlier */
+   -webkit-box-shadow: 5px 5px 10px #888888; /* Safari */
+   box-shadow: 5px 5px 10px #888888;
+}
+
+#logo_cabe{
+   background:black;
+   border:200px orange;
+   height:500px;
+}
+/*Fin cambios luis*/
