@@ -1,0 +1,403 @@
+commit e7c84cf2165375b83f64c0769da482ed76e1293f
+Author: Luis <luis@luis-M50Vc.(none)>
+Date:   Fri Jul 8 11:18:58 2011 +0200
+
+    cambios_css_Y_cabecera
+
+commit 1fedb71d6b56f5cae7f0cbbc2b0f74e6856ccbfe
+Author: Luis <luis@luis-M50Vc.(none)>
+Date:   Wed Jul 6 12:22:18 2011 +0200
+
+    css_changes
+
+commit 046bdf568b3b9f9e8dc904b9f025e7edc5fdbe92
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Jul 3 14:03:13 2011 +0200
+
+    extension product_visibility to control the ordering of the products
+
+commit 687123546cf825e617033531ca47806acd193437
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Fri Jul 1 00:40:47 2011 +0200
+
+    sort products by price (temp, later we wanna sort by visibility)
+
+commit c6ceee6d8731808342a41be84de6ddba2a91ace2
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Jun 19 19:56:54 2011 +0200
+
+    homeheader links
+
+commit eb81580b17c8c402a849491289965f9afbdae75c
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Mon May 30 22:47:01 2011 +0200
+
+    fix to let IE show the comunidades/state as a dropdownlist
+
+commit 86d2be0aeab6330b07d4e5b6ab8c37da0353f447
+Merge: 9cb1aa1 0787deb
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Wed May 25 06:50:39 2011 +0200
+
+    Merge branch 'master' of git@github.com:fizquierdo/bestidev
+
+commit 9cb1aa11be25da9d7e4512a36b9a8c8979d5cd8c
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Wed May 25 06:49:32 2011 +0200
+
+    changed cabecera welcome message to make it more SEO friendly
+
+commit 0787deb5f2250316b114336a65bacff02172aebc
+Author: Alfonso Izquierdo <sitonico@gmail.com>
+Date:   Wed May 18 19:43:09 2011 +0200
+
+    changes to test
+
+commit 5d248fc5d0f691de24c8880b133211fd21e0bb4b
+Author: Alfonso Izquierdo <sitonico@gmail.com>
+Date:   Sat May 14 03:13:57 2011 +0200
+
+    readme clean
+
+commit 1c5e11b8e1c0c7a3ef59bf8413b1289a132fc030
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Fri May 13 00:24:15 2011 +0200
+
+    updated header with the text of production version
+
+commit a9f35a3532abab644d19a9419b4cec818bfecc5e
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Fri May 13 00:06:45 2011 +0200
+
+    added helper to find a nav. taxon, view it as a pic in the homepage
+
+commit 3404a1488529021020271bc709f9888f7ae5d560
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Thu May 12 21:49:29 2011 +0200
+
+    added hook for admin panel from homepage extension directly from the legal_hooks, it was otherwise not activated
+
+commit 787df96d7dd74eb6739ffe1a355bc89d35993206
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Wed May 11 23:27:01 2011 +0200
+
+    addedd code to overrides to fix prettyphoto so that variant photos are shown
+
+commit a4dbd4ae000647361dab28dc9cae0188f1eee21f
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Wed May 11 23:24:17 2011 +0200
+
+    added override files to fix prettyphoto
+
+commit fe0bc63012a42b1ec27262af6e2ff656d78a6cb0
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Wed May 11 23:17:21 2011 +0200
+
+    added override of index homepage over the simple one from the extension
+
+commit f48d550ee257fb53f21f62d6a8832a1fcc7e2101
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Wed May 11 23:00:34 2011 +0200
+
+    added spree homepage extendion
+
+commit 0d12c9ea0a15f72772314d0979de04e97d368e9f
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Wed May 11 22:14:22 2011 +0200
+
+    added database config to .gitignore
+
+commit 027f97a5eb0b4ef7e58f6eb1546227605a839253
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Wed May 11 22:00:31 2011 +0200
+
+    changed sec
+
+commit 6a80392b427d745ca3f241f3221e3f125dd1831e
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Mon May 9 21:51:55 2011 +0200
+
+    added spree pretty photo
+
+commit 058693d708ae5bb22c2d8613e0bcd33fa246e669
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun May 1 14:16:29 2011 +0200
+
+    change traduction fo state to comunidad
+
+commit f4195fbbddbfae47193fbc438676c3352a987281
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Apr 17 19:50:47 2011 +0200
+
+    added logos and special wrappers
+
+commit ce209d7aea3b7980ed725368071259c18c0a019b
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sat Apr 16 21:24:28 2011 +0200
+
+    remove contact phone
+
+commit bba799a83945f497ea29958911eec29db0f38470
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Thu Apr 14 00:59:08 2011 +0200
+
+    changed contact mail
+
+commit bd51c56baf5fb3061134ecd3f2f3b42f77a44256
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Tue Apr 12 21:42:48 2011 +0200
+
+    added contact phone
+
+commit 0820ef2628637c523450de1f8981d4a4dfbe2d47
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Mon Apr 11 23:03:18 2011 +0200
+
+    changed check_fix extension by check_capture extension
+
+commit 77e15a7403715eb628a0baf3f8931b360bcbb39e
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Mon Apr 4 23:48:03 2011 +0200
+
+    added blog link
+
+commit f9d9f580adaab5b871357417dd278a1d843710ca
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Mon Apr 4 23:38:04 2011 +0200
+
+    corrected conditions semistatic
+
+commit a82b1c8e63ab51bfc5c731eeaa1202dcf6f8e76e
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Apr 3 22:53:20 2011 +0200
+
+    show promotions to buyer
+
+commit a56e0dd7e27a5bdf52ea39521d4c1029a8587375
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Apr 3 13:16:30 2011 +0200
+
+    adatped import to price formats
+
+commit fc737548acc99f8ae7b6e336a13b44154e00c79d
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Thu Mar 31 21:51:00 2011 +0200
+
+    added footer left
+
+commit b04f80c0e911d3f62c1442511797d3e6687bb932
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Thu Mar 31 21:50:19 2011 +0200
+
+    formateo del quienes somos
+
+commit 0de231768ff5d445ec6e84f4e841226cdabde477
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Mar 27 16:24:25 2011 +0200
+
+    logos
+
+commit 25d770110686d1a55390728513c80b0687409d2f
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Mar 27 14:01:26 2011 +0200
+
+    change colors
+
+commit 2d6d6bcf3d4fe0b035db84e05deb36b1bb6c6e04
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Mar 27 13:17:33 2011 +0200
+
+    cambio de cabecera
+
+commit 17921b6dd298f50d341a2f87d986f62a20b234af
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Fri Mar 25 00:12:37 2011 +0100
+
+    style change
+
+commit 5a5dd2fb6b706f7d9637e674a5b4e9ced967cbe7
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Fri Mar 25 00:03:44 2011 +0100
+
+    style and static pages
+
+commit 4fea9b6e3092a4d882516e2994c16d61214d69c1
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Thu Mar 24 01:44:55 2011 +0100
+
+    corrected comma problem in prices import
+
+commit 96f9e5461df3ccd029ac4e35b62f44439ae2ec38
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Tue Mar 22 01:19:26 2011 +0100
+
+    added cabecera
+
+commit 3004a6ff2a7288fdc8910a35c9fc16a5b59f4afc
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Mon Mar 21 22:03:13 2011 +0100
+
+    import catalog version 7
+
+commit d239072b6370c6d3e04ee29731c8836bb54482fc
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Mar 13 22:03:18 2011 +0100
+
+    added override of payment form to show the payment method description
+
+commit 05170ca728f295b5129e5d2d8788bc8cb9b47861
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Fri Mar 11 23:26:16 2011 +0100
+
+    forgot this stuff from the paypal express commit
+
+commit ead85bd5bddf5ef876f9a4e29b3c5323d11f72bf
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Fri Mar 11 23:25:13 2011 +0100
+
+    added paypal spress, note gem was modified in checkout_controller_decorator.rb
+
+commit f5f9bb46b3aba901db46c010db3b288ca57dc1a9
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Tue Mar 8 22:18:18 2011 +0100
+
+    correct wrapper
+
+commit 247b8ccad5940fd9a77eff91237fff1d47309bd9
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Tue Mar 8 21:43:34 2011 +0100
+
+    changed logo and improved sheet for single product
+
+commit 27c40708725e73fdd69fb25b7a915ec6ff2950a2
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Tue Mar 8 21:29:38 2011 +0100
+
+    changed right translations, new opaque sheet, background
+
+commit 466ec2534227ebb6a28feda29dd74ed4341fed50
+Merge: 6ae7888 a5069dc
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Feb 27 20:35:55 2011 +0100
+
+    Merge branch 'importator'
+
+commit a5069dc28b26d8cf20d10168c2f9d8424705f0e0
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Feb 27 20:35:24 2011 +0100
+
+    corrected import config and nil-ness checks, additional info to blog
+
+commit 6ae7888c125ed904d469a10e06b3d398f09a66ba
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sat Feb 19 23:53:03 2011 +0100
+
+    override to force price bucket to work
+
+commit 0413ee3a74ef77af5c1b54dfdb28d8fa821f7989
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Thu Feb 17 23:00:55 2011 +0100
+
+    remove contrareembolso from conditions
+
+commit 31c579002709e9a9afeb8c7b290ef41c0da4da73
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Feb 13 18:39:07 2011 +0100
+
+    Added support for variants and option types, just example, figure out how to layout data to do this with comfort
+
+commit 9864b6da6e1c2d5ca52c93e6fad5ae8278eb44f8
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Feb 13 16:15:46 2011 +0100
+
+    Added file support
+
+commit 866f60bb619321d8d0ae21880980e7130b85ca10
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Feb 13 15:46:46 2011 +0100
+
+    Added taxonomies import
+
+commit 4494a609bedd1da5025272d84e6bb6084e90bd6c
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Feb 13 15:12:21 2011 +0100
+
+    import basic format, including properties Talla and Volumen if applicable
+
+commit 05dae8f7747afdb8ccf1977f2b1776d03facd8a7
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Tue Feb 8 00:38:37 2011 +0100
+
+    example to parse large descriptions, take care with the albslolute paths in actual implementation
+
+commit 8197e98fe7c7cffd46421fd9963e195141996766
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Mon Feb 7 23:57:36 2011 +0100
+
+    basic import in manually extension, you can build on this for your custom import
+
+commit 5efe43a430b8a9363e9813ec85006a7d25d64bef
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Mon Feb 7 22:12:15 2011 +0100
+
+    just added test assets (1 product)
+
+commit 87aed7ccfb83747d704abb3796d616c84c557493
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Feb 6 03:32:27 2011 +0100
+
+    changed position of photos in who we are
+
+commit 037bb0c26ca0be709ad4db2e629db779d40ef0d1
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sun Feb 6 03:25:50 2011 +0100
+
+    Initial concept for who we are and added alfonso too
+
+commit 8e17634a5d69f95631624178ec50f7db0846413c
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sat Feb 5 23:25:35 2011 +0100
+
+    Added conditions
+
+commit 1ffbe6c01e44b604e25abfb858af0593d66c0e60
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sat Feb 5 22:09:05 2011 +0100
+
+    footer right with aviso legal only
+
+commit a93f13236541c1d210111cb5f6c4bfa4d30214a3
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Sat Feb 5 22:06:21 2011 +0100
+
+    first draft for the legal advice
+
+commit 08d0d9db15ff2832b19dcdbb3787c30abc3e94d1
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Fri Jan 28 00:04:00 2011 +0100
+
+    Traduccion de alf, da error al integrarla, pero no se xq :(
+
+commit 179444739c21dad96c6db58375c6bbcd5b9d3c34
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Thu Jan 27 23:52:43 2011 +0100
+
+    Added copyright notice
+
+commit d6c4d782082d31337f32a5485386f7cc7c73ef67
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Thu Jan 27 23:05:11 2011 +0100
+
+    Name Dev mails differently for testing
+
+commit 1df2dd1e029990ba51686b809c36ebc3ed02ec1e
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Thu Jan 27 22:57:08 2011 +0100
+
+    make changes for development
+
+commit 8d25d5ae7d3471ccf8a31730b60d2d7a5db89d55
+Author: Fernando Izquierdo-Carrasco <fer.izquierdo@gmail.com>
+Date:   Thu Jan 27 22:42:24 2011 +0100
+
+    initial commit for bestiaz dev
