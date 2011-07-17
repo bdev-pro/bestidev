@@ -5,15 +5,22 @@ SECTION_TAXON = "Productos"
 EXPORT_FOLDER = File.join Rails.root, "xtra/catalogo/exported" # DEVELOPMENT!!
 PROD_HEADER = %w(section sku name price cost_price count_on_hand visibility available_on show_on_homepage meta_keywords)
 VARIANT_HEADER = %w(sku count_on_hand price option_values images) 
-CSV_SEP = "\t"
+CSV_SEP = "|"
+# syn_files
+DESC_FILE = "desc.txt"
+METADESC_FILE = "metadesc.txt"
+PROPERTIES_FILE = "properties.txt"
+VARIANTS_FILE = "variants.txt"
+
+
 #LOGFILE = File.join(Rails.root, '/log/', "export_products_#{Rails.env}.log")
 LOGFILE = File.join(EXPORT_FOLDER, "export_products_#{Rails.env}.log")
 
 class ProductInfo
   def initialize(product, brand_folder)
     @p = product
-    @desc = {:file => "desc.txt", :text => @p.description}
-    @metadesc = {:file => "metadesc.txt", :text => @p.meta_description}
+    @desc = {:file => DESC_FILE , :text => @p.description}
+    @metadesc = {:file => METADESC_FILE, :text => @p.meta_description}
     @folder = File.join brand_folder, "#{@p.sku}_#{@p.name.gsub(" ","_")}"
     FileUtils.mkdir_p(@folder)
   end
@@ -37,7 +44,7 @@ class ProductInfo
     if @p.product_properties.empty?
       num_props = 0
     else
-      File.open(File.join(@folder, "properties.txt"), "w") do |f|
+      File.open(File.join(@folder, PROPERTIES_FILE), "w") do |f|
         @p.product_properties.each do |prop|
           f.puts Property.find(prop.property_id).name + ":" + prop.value
         end
@@ -61,7 +68,7 @@ class ProductInfo
   end
   def export_variants
     if @p.has_variants?
-      File.open(File.join(@folder, "variants.txt"), "w") do |f|
+      File.open(File.join(@folder, VARIANTS_FILE), "w") do |f|
         f.puts VARIANT_HEADER.join(CSV_SEP)
         @p.variants.each do |v|
           vstr = [v.sku, v.count_on_hand, v.price].map{|x| x.to_s}.join(CSV_SEP)
@@ -118,7 +125,7 @@ class ProductExport
       brands_id = Taxon.find_by_name(BRAND_TAXON).id      # This is the id for "Marcas" 
       brands = Taxon.select{|t| t.parent_id == brands_id} # Find all brands
       products = []
-      f_full = File.open(File.join(EXPORT_FOLDER,"resumen.csv"), "w")
+      f_full = File.open(File.join(EXPORT_FOLDER, "resumen.csv"), "w")
       f_full.puts 'brand' + CSV_SEP + PROD_HEADER.join(CSV_SEP)
       brands.sort{|a,b| a.name <=> b.name}.each do |brand|
         brand_folder = File.join EXPORT_FOLDER, brand.name.gsub(" ","_")

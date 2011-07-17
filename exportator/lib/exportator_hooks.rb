@@ -3,4 +3,7 @@ class ExportatorHooks < Spree::ThemeSupport::HookListener
   insert_after :admin_tabs do
    %(<%= tab(:product_export_index) %>)
   end
+  insert_after :admin_tabs do
+   %(<%= tab(:product_upload_index) %>)
+  end
 end

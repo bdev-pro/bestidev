@@ -51,7 +51,8 @@ Onlineshop::Application.routes.draw do
        # Directs /admin/products/* to Admin::ProductsController
        # (app/controllers/admin/products_controller.rb)
        resources :product_import
-       resources :product_export
+       resources :product_export 
+       resources :product_upload 
      end
 
   # You can have the root of your site routed with "root"
