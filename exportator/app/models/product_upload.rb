@@ -1,18 +1,3 @@
-# UNDRY constants with product_export.rb
-BRAND_TAXON = "Marcas"
-SECTION_TAXON = "Productos"
-PRODUCTS_FILE = "products.csv" 
-PROD_HEADER = %w(section sku name price cost_price count_on_hand visibility available_on show_on_homepage meta_keywords)
-VARIANT_HEADER = %w(sku count_on_hand price option_values images) 
-CSV_SEP = "|"
-#sync files
-DESC_FILE = "desc.txt"
-METADESC_FILE = "metadesc.txt"
-PROPERTIES_FILE = "properties.txt"
-VARIANTS_FILE = "variants.txt"
-# unique here
-IMAGES_FOLDER = "images"
-
 class UploadMonitor
   attr_accessor :product
   def initialize(folder)
@@ -22,7 +7,7 @@ class UploadMonitor
     @product = nil
   end
   def products_file 
-    File.join @folder, PRODUCTS_FILE
+    File.join @folder, ExportConfig::PRODUCTS_FILE
   end
   def brand
     @folder.split("/").last.strip
@@ -95,13 +80,19 @@ class ProductUpload #< ActiveRecord::Base
         product_info = {}
         m.product = nil
         # stuff from the CSV
-        p = row.split(CSV_SEP)
-        PROD_HEADER.each_with_index do |label, i|
+        p = row.split(ExportConfig::CSV_SEP)
+        ExportConfig::PROD_HEADER.each_with_index do |label, i|
           product_info[label.to_sym] = p[i]
           m.log "Read #{label} :" + product_info[label.to_sym]
         end
         # check that the sku is not taken!
         m.check_sku(product_info[:sku]) #  the most important line of this code :)
+        # check that there are some images
+        image_path = File.join folder, ExportConfig::IMAGES_FOLDER
+        raise "Directory #{image_path} not found" unless File.exists?(image_path)
+        imagefiles = Dir.new(image_path).entries.select{|f|f.include?(product_info[:sku])}
+        raise "No images found for #{product_info[:sku]}" if imagefiles.empty?
+
         # here we can create the product already 
         section = product_info.delete(:section)
         m.product = Product.new(product_info)
@@ -109,33 +100,29 @@ class ProductUpload #< ActiveRecord::Base
           log("A product could not be imported - :\n #{product_info.inspect}", :error)
           next
         end
-        #Save the object before creating asssociated objects
+        #Save the object before creating asssociated objects 
         m.product.save
         # associate taxa (brand and section)
-        m.associate_this_taxon(SECTION_TAXON, section)
-        m.associate_this_taxon(BRAND_TAXON, m.brand)
+        m.associate_this_taxon(ExportConfig::SECTION_TAXON, section)
+        m.associate_this_taxon(ExportConfig::BRAND_TAXON, m.brand)
 
         # now images (one single folder for all images including those from the variants)
-        image_path = File.join folder, IMAGES_FOLDER
-        imagefiles = Dir.new(image_path).entries.select{|f|f.include?(m.product.sku)}
         m.log("#{imagefiles.size} found for #{m.product.sku}")
-        unless imagefiles.empty?
-          imagefiles.each do |f| 
-            m.find_and_attach_image(File.join(image_path, f))
-          end
+        imagefiles.each do |f| 
+          m.find_and_attach_image(File.join(image_path, f))
         end
 
         # now stuff particular for the product
         product_folder = File.join(folder, m.product_folder)
         if File.exists?(product_folder)
           # desc
-          desc_file = File.join product_folder, DESC_FILE
+          desc_file = File.join product_folder, ExportConfig::DESC_FILE
           m.product.description = File.open(desc_file).read if File.exists?(desc_file)
           # meta desc
-          metadesc_file = File.join product_folder, METADESC_FILE
+          metadesc_file = File.join product_folder, ExportConfig::METADESC_FILE
           m.product.meta_description = File.open(metadesc_file).read if File.exists?(metadesc_file)
           # properties
-          prop_file = File.join product_folder, PROPERTIES_FILE
+          prop_file = File.join product_folder, ExportConfig::PROPERTIES_FILE
           if File.exists?(prop_file)
             File.open(prop_file).readlines.each do |property|
               name, value = property.split(":")
@@ -144,12 +131,12 @@ class ProductUpload #< ActiveRecord::Base
           end
           m.product.save
           # variants (we assume we work with a single option value / type per product)
-          variants_file = File.join product_folder, VARIANTS_FILE
+          variants_file = File.join product_folder, ExportConfig::VARIANTS_FILE
           if File.exists?(variants_file)
             File.open(variants_file).readlines[1..-1].each do |variant|
               v_info = {}
-              variant_values = variant.split(CSV_SEP)
-              VARIANT_HEADER.each_with_index do |label, i|
+              variant_values = variant.split(ExportConfig::CSV_SEP)
+              ExportConfig::VARIANT_HEADER.each_with_index do |label, i|
                 v_info[label.to_sym] = variant_values[i]
               end
               m.log "Read variant #{v_info[:sku]} of #{m.product.sku} :" + v_info[:option_values]
@@ -161,7 +148,7 @@ class ProductUpload #< ActiveRecord::Base
               ovariant.count_on_hand = v_info[:count_on_hand]
               ovariant.price = v_info[:price] unless v_info[:price].nil?
               ovariant.option_values << new_value
-              image_path = File.join folder, IMAGES_FOLDER
+              image_path = File.join folder, ExportConfig::IMAGES_FOLDER
               imagefiles = Dir.new(image_path).entries.select{|f|f.include?(v_info[:sku])}
               unless imagefiles.empty?
                 imagefiles.each{|f| m.find_and_attach_image(File.join(image_path, f), ovariant)} 
