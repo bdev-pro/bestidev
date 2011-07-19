@@ -2,12 +2,16 @@ require 'fileutils'
 
 
 class ProductInfo
+  attr_reader :num_images
   def initialize(product, brand_folder)
     @p = product
     @desc = {:file => ExportConfig::DESC_FILE , :text => @p.description}
     @metadesc = {:file => ExportConfig::METADESC_FILE, :text => @p.meta_description}
-    @folder = File.join brand_folder, "#{@p.sku}_#{@p.name.gsub(" ","_")}"
+    @folder = File.join brand_folder, @p.sku
     FileUtils.mkdir_p(@folder)
+    @images_folder = File.join @folder, ExportConfig::IMAGES_FOLDER 
+    FileUtils.mkdir_p(@images_folder)
+    @num_images = 0
   end
   def to_csv_str(sep) 
     str = @p.sku.to_s
@@ -38,18 +42,26 @@ class ProductInfo
     end
     num_props
   end
+  def image_desc(image)
+    @num_images += 1
+    [image.attachment_file_name, image.alt].join(':')
+  end
   def export_images
-    if @p.images.empty?
-      num_images = 0
-    else
-      File.open(File.join(@folder, "images.txt"), "w") do |f|
-        @p.images.each do |image|
-          f.puts image.attachment_file_name
+    File.open(File.join(@images_folder, ExportConfig::IMAGES_DESC_FILE), "w") do |f|
+      f.puts "filename : alt-desc text" 
+      if @p.images.empty?
+        elog "NO image for #{@p.name}, sku #{@p.sku}", :warn 
+      else
+        @p.images.each {|image| f.puts image_desc(image)} 
+      end
+      f.puts "variant filename : alt-desc text" 
+      # now export the images of the variants
+      if @p.has_variants?
+        @p.variants.each do |variant|
+          variant.images.each {|v_image| f.puts image_desc(v_image)} unless variant.images.empty?
         end
       end
-      num_images = @p.images.size
     end
-    num_images
   end
   def export_variants
     csv_sep = ExportConfig::CSV_SEP
@@ -63,14 +75,6 @@ class ProductInfo
           ov = v.option_values.first
           ot = OptionType.find(ov.option_type.id)
           vstr += csv_sep + ot.presentation + ':' + ov.presentation
-          # now check the images, if any, if image is missing report
-          if v.images.empty?
-            num_images = 0
-            elog "  No image found for variant #{v.sku}"
-          else
-            vstr += csv_sep + "images:" + v.images.map{|i|i.attachment_file_name}.join(",")
-            num_images = v.images.size
-          end
           f.puts vstr
         end
       end
@@ -93,7 +97,7 @@ class ProductExport
   def self.export_data
     ret = ""
     begin
-      elog "NEW export, all previous will be overwritten"
+      elog "NEW export started"
       # hash the sections
       hsections = {}
       sections_id = Taxon.find_by_name(ExportConfig::SECTION_TAXON).id      
@@ -108,7 +112,7 @@ class ProductExport
       csv_sep = ExportConfig::CSV_SEP
       # check the brands
       brands_id = Taxon.find_by_name(ExportConfig::BRAND_TAXON).id      # This is the id for "Marcas" 
-      brands = Taxon.select{|t| t.parent_id == brands_id} # Find all brands
+      brands = Taxon.select{|t| t.parent_id == brands_id}               # Find all brands
       products = []
       f_full = File.open(File.join(ExportConfig::EXPORT_FOLDER, ExportConfig::SUMMARY_FILE), "w")
       f_full.puts 'brand' + csv_sep + ExportConfig::PROD_HEADER.join(csv_sep)
@@ -132,13 +136,13 @@ class ProductExport
             f.puts pstr 
             pi.export_descriptions
             num_props = pi.export_properties
-            num_images = pi.export_images
+            pi.export_images
             num_variants = pi.export_variants
-            elog " exported incl. #{num_props} properties, #{num_images} images, #{num_variants} variants"
-            elog "NO image for #{p.name}", :warn if num_images == 0
+            elog " exported incl. #{num_props} properties, #{pi.num_images} images, #{num_variants} variants"
           end
         end
       end
+      elog " Finished export,  my friend :) "
       f_full.close
     [:notice, "You did it :) at #{Time.now}, now go and check your files at #{ExportConfig::EXPORT_FOLDER}  \n" +  ret]
     rescue Exception => exp
