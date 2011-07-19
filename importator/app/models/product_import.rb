@@ -88,19 +88,19 @@ class ProductImport < ActiveRecord::Base
         if product_obj.sku == mpn then
           log "variant #{pn} belongs to #{mpn}"
           opt_type = product_obj.option_types.select{|o| o.name == ot}.first
-	  opt_type = product_obj.option_types.create(:name => ot, :presentation => ot.capitalize) if opt_type.nil?
+          opt_type = product_obj.option_types.create(:name => ot, :presentation => ot.capitalize) if opt_type.nil?
           new_value = opt_type.option_values.create(:name => val, :presentation => val)
-	  ovariant = product_obj.variants.create(:sku => pn)
+          ovariant = product_obj.variants.create(:sku => pn)
           ovariant.count_on_hand = stock
           ovariant.price = price unless price.nil?
-	  ovariant.option_values << new_value
+          ovariant.option_values << new_value
           imagefiles = Dir.new(ipath).entries.select{|f|f.include?(pn)}
           unless imagefiles.empty?
             imagefiles.each{|f| find_and_attach_image(f, ovariant)} 
             log("#{imagefiles.size} found for variants of #{product_information[:sku]},named #{product_information[:name]}")
           end
           log(" variant priced #{ovariant.price} with sku #{pn} saved for #{product_information[:sku]},named #{product_information[:name]}")
-	  ovariant.save!
+          ovariant.save!
         end
       end
       

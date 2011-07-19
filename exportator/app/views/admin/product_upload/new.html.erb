@@ -1,0 +1,10 @@
+<h2>Upload a new brand with products</h2>
+<%= form_for(:product_upload,  :url => admin_product_upload_index_path, :method => :post, :html => { :multipart => true }) do |f| %>
+<p>
+  <%= text_field_tag :folder, File.join(Rails.root, "xtra/catalogo/exported/NEWFUEL"), :size => 80 %>
+</p>
+<p class="form-buttons">
+  <%= button t("actions.create") %>
+</p>
+
+<% end %>

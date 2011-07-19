@@ -46,3 +46,4 @@ gem "importator", :require => "importator", :path => "importator"
 #   gem 'webrat'
 # end
 gem "products_visibility", :require => "products_visibility", :path => "products_visibility"
+gem "exportator", :require => "exportator", :path => "exportator"
