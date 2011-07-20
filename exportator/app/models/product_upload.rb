@@ -43,11 +43,12 @@ class UploadMonitor
       log "#{taxon_name} not associated to #{@product.name}", :warn
     end
   end
-  def find_and_attach_image(filename, product = @product)
+  def find_and_attach_image(filename, product, alt_desc = "")
     #An image has an attachment (duh) and some object which 'views' it
     product_image = Image.new({:attachment => File.open(filename, 'rb'), 
                               :viewable => product,
-                              :position => product.images.length
+                              :position => product.images.length, 
+                              :alt => alt_desc
     }) 
     if product_image.save
       product.images << product_image 
@@ -69,6 +70,30 @@ class UploadMonitor
     pp.value = property_value
     pp.save
   end
+  def check_image(sku)
+    # TODO see exactly what are the requirements for the image, and test the upload 
+    num_images = 0
+    image_path = File.join folder, sku, ExportConfig::IMAGES_FOLDER
+    if File.exists?(image_path)
+      image_desc_file = File.join image_path, ExportConfig::IMAGES_DESC_FILE
+      if File.exists?(image_desc_file)
+        File.open(image_desc_file).readlines[1..-1].each do |image_row|
+          image_name, alt_desc = image_row.chomp.split(":")
+          imagefiles = Dir.new(image_path).entries.select{|f|f.include?(image_name)}
+          if imagefiles.empty?  
+            m.log "file for images #{image_name} not found in #{image_path}"
+          else
+            num_images += 1
+          end
+        end
+      else
+        m.log "File #{image_desc_file} not found"
+      end
+    else
+      m.log "Directory #{image_path} not found"
+    end
+    num_images
+  end
 end
 
 class ProductUpload #< ActiveRecord::Base
@@ -87,17 +112,18 @@ class ProductUpload #< ActiveRecord::Base
         end
         # check that the sku is not taken!
         m.check_sku(product_info[:sku]) #  the most important line of this code :)
-        # check that there are some images
-        image_path = File.join folder, ExportConfig::IMAGES_FOLDER
-        raise "Directory #{image_path} not found" unless File.exists?(image_path)
-        imagefiles = Dir.new(image_path).entries.select{|f|f.include?(product_info[:sku])}
-        raise "No images found for #{product_info[:sku]}" if imagefiles.empty?
-
+        # check that there are some images, no image? skip import of this product
+        num_images = m.check_image(product_info[:sku]) 
+        # end of image check
+        unless num_images > 0
+          m.log "Jumping to next product", :warn
+          next
+        end
         # here we can create the product already 
         section = product_info.delete(:section)
         m.product = Product.new(product_info)
         unless m.product.valid?
-          log("A product could not be imported - :\n #{product_info.inspect}", :error)
+          m.log("A product could not be imported - :\n #{product_info.inspect}", :error)
           next
         end
         #Save the object before creating asssociated objects 
@@ -109,7 +135,7 @@ class ProductUpload #< ActiveRecord::Base
         # now images (one single folder for all images including those from the variants)
         m.log("#{imagefiles.size} found for #{m.product.sku}")
         imagefiles.each do |f| 
-          m.find_and_attach_image(File.join(image_path, f))
+          m.find_and_attach_image(File.join(image_path, f), m.product)
         end
 
         # now stuff particular for the product

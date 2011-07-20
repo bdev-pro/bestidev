@@ -54,7 +54,6 @@ class ProductInfo
       else
         @p.images.each {|image| f.puts image_desc(image)} 
       end
-      f.puts "variant filename : alt-desc text" 
       # now export the images of the variants
       if @p.has_variants?
         @p.variants.each do |variant|
