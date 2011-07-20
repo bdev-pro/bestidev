@@ -7,7 +7,7 @@ module SpreeSite
 	Spree::Config.set(:default_locale => 'es')
 #	Spree::Config.set(:default_country_id => Country.iso_name_like("spain").first.id)
 	#Spree::Config.set(:logo => "/images/cabecera2.jpg")
-	Spree::Config.set(:logo => "/images/cabecera_precipicio.jpg")
+	Spree::Config.set(:logo => "/images/Cabecera_CabeceraCabecera_precipicio_retocada.png")
 	Spree::Config.set(:admin_products_per_page => 12)
 	Spree::Config.set(:products_per_page => 12)
     end

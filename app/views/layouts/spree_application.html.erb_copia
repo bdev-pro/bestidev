@@ -4,20 +4,6 @@
 <%= hook :inside_head do %>
   <%= render :partial => 'shared/head'%>
 <% end %>
-
-<!-- Para nivo_slider -->
-
-<link rel="stylesheet" href="/stylesheets/nivo-slider/styles.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/stylesheets/nivo-slider/nivo-slider.css" type="text/css" media="screen" />
-<script type="text/javascript" src="/javascripts/nivo-slider/jquery-1.6.1.min.js"></script>
-<script type="text/javascript" src="/javascripts/nivo-slider/jquery.nivo.slider.pack.js"></script>
-<script type="text/javascript">
-    $(window).load(function() {
-        $('#slider').nivoSlider();
-    });
-    </script>
-
-<!-- fin_nivo_slider -->
 </head>
 <%
 if @body_class.nil?
@@ -38,38 +24,30 @@ end
 <br />
   <div id="wrapper" class="container">
 <div id="login-bar">
-
-<!--Redes sociales -->
-<table border="0px";><tr><td width="50px">
-<h3>Síguenos:</h3></td><td width="150px">  
-<a href='http://blog.bestiaz.com/blog'><img src='images/social/wordpress.png' /></a> &nbsp;
-<a href='https://twitter.com/#!/bestiazShop'><img src='images/social/twitter.png' /></a> &nbsp;
-<a href='http://es-la.facebook.com/people/BestiazOnline-Tienda/100002273787518?sk=info'><img src='images/social/facebook.png' /></a> &nbsp;
-</td>
-
-<td>
-<!-- redes sociales fin -->
-
    <ul id="nav-bar">
-        <% if current_user %>
+         <p>
+         <% if current_user %>
            <li><%= link_to t('my_account'), account_path %></li>
            <li><%= link_to t('logout'), destroy_user_session_path %></li>
          <% else %>
            <li><%= link_to t('log_in'), login_path %></li>
          <% end %>
+         </p>
          <% if store_menu? %>
+         <p>
           <!-- partial 'shared/store_menu' start -->
           <!--<li><%= link_to t("home") , root_path %></li> -->
+         </p>
+         <p>
            <li class="cart-indicator"><%= link_to_cart %></li>
+         </p>
            <!-- partial 'shared/store_menu' end -->
          <% end %>
          <!--<%= render 'shared/nav_bar' %> -->
         </ul>
     </div>
-</td></tr></table>
-    
 
-<% if content_for?(:sidebar) %>
+    <% if content_for?(:sidebar) %>
     <div id="sidebar">
       <%= hook :sidebar do %>
         <%= yield :sidebar %>

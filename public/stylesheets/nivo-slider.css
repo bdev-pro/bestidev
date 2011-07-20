@@ -1,0 +1,16 @@
+#slider {
+    position:relative;
+    width:525px; /* Change this to your images width */
+    height:230px; /* Change this to your images height */
+    background:url(images/loading.gif) no-repeat 50% 50%;
+}
+#slider img {
+    position:absolute;
+    top:0px;
+    left:0px;
+    display:none;
+}
+#slider a {
+    border:0;
+    display:block;
+}

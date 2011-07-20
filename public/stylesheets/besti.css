@@ -4,12 +4,39 @@ body {
 	/*background: #737277; grin original*/
 /*	background: #D3D1D2; gir claro carretera */
 /*	background: #9DB6CC; */
-	background: #959FB2;   
+	background: url('/images/background_patterns/background_bestiaz.jpg') repeat-x;
 }
 
 #header a { color: #FFFFFF; }
 #header a:hover { color: #000000; }
 
+#welcome{
+height:280px;
+}
+
+#present{
+  border-right:#ccc solid 1px;
+  font-size: 1.0em;
+	width: 400px;
+	height:240px;
+  background:#eee;
+  padding:4px;
+  float:left;
+  -moz-box-shadow: 5px 5px 10px #888888; /* Firefox 3.6 and earlier */
+  -webkit-box-shadow: 5px 5px 10px #888888; /* Safari */
+  box-shadow: 5px 5px 10px #888888;
+}
+
+#present-right{
+  margin-left:20px;
+  padding:5px;
+  height:240px;
+  float:left;
+  background:#414141;
+  -moz-box-shadow: 5px 5px 10px #888888; /* Firefox 3.6 and earlier */
+  -webkit-box-shadow: 5px 5px 10px #888888; /* Safari */
+  box-shadow: 5px 5px 10px #888888;
+}
 
 .reset {
    clear: both;
@@ -35,6 +62,9 @@ ul#nav-bar {
    clear: both;
    font-size: 1.5em;
    line-height: 40px;
+   text-align:left;
+   color=black;
+	 
 /*
    border-style:solid;
    border-bottom:5px solid #CECECE;
@@ -54,14 +84,13 @@ ul#nav-bar {
    background-repeat:no-repeat;
 }
 
-
 div#logo-bar {
    float: left;
 }
 
 div#search-bar {
    float: right;
-   padding-top: 20px;
+   padding-top:20px;
 }
 
 .bes-align-right { float:right; margin: 0 0 15px 15px; }

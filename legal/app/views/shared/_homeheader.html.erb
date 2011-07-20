@@ -1,11 +1,24 @@
 <hr>
+<div id="welcome">
 <%= render "shared/welcome" %>
+</div>
 <hr>
 <% # taxon is a helper from ApplicationHelper, note this depends on how we call the taxon (nav menu)  %>  
 <% [ "Atletismo", "Varios", "Nutrición", "Ciclismo", "Natación"] %>
-<%= link_to ((image_tag 'homelinks/Atletismo.png'), seo_url(taxon("Atletismo"))) %></br></br>
-<%= link_to ((image_tag 'homelinks/Ciclismo.png'), seo_url(taxon("Ciclismo"))) %></br></br>
-<%= link_to ((image_tag 'homelinks/Natacion.png'), seo_url(taxon("Natación"))) %></br></br>
+<!-- Falta redimensionar las imágenes reduciéndolas 10px de ancho -->
+<table border="0px">
+<tr><td>
+<%= link_to ((image_tag 'homelinks/Atletismo_1.jpg', :mouseover => 'homelinks/Atletismo_2.jpg'), seo_url(taxon("Atletismo"))) %><br />
+</td></tr>
+<tr><td>
+<%= link_to ((image_tag 'homelinks/Ciclismo_1.jpg', :mouseover => 'homelinks/Ciclismo_2.jpg'), seo_url(taxon("Ciclismo"))) %><br />
+</td></tr>
+<tr><td>
+<%= link_to ((image_tag 'homelinks/Natacion_1.jpg', :mouseover => 'homelinks/Natacion_2.jpg'), seo_url(taxon("Natación"))) %><br />
+</td></tr>
+<tr><td>
+<%= link_to ((image_tag 'homelinks/Nutricion_1.jpg', :mouseover => 'homelinks/Nutricion_2.jpg'), seo_url(taxon("Nutrición"))) %><br />
+</td></tr></table>
 <br/>
 <br/>
 <div id="mas_solicitados">Lo mas pedido: échale un vistazo a los productos mas vendidos en nuestra tienda de triatlon </div>
