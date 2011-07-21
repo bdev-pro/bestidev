@@ -16,6 +16,8 @@ class ExportConfig
 
   IMAGES_FOLDER = "images"
   IMAGES_DESC_FILE = "images_descriptions.txt"
+  VARIANTS_IMAGES_DESC_FILE = "variants_images_descriptions.txt"
+  IMAGES_DESC_HEADER = "sku : filename : alt-desc text"
 
   # exporter only
   SUMMARY_FILE = "resumen.csv"

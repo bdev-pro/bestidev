@@ -16,7 +16,7 @@ class UploadMonitor
     raise "Product id (#{sku}) already taken !" unless Product.active.select{|p|p.sku == sku}.empty?
   end
   def product_folder
-    "#{@product.sku}_#{@product.name.gsub(" ","_")}"
+    @product.sku
   end
   def log(message, severity = :info)   
     @rake_log ||= ActiveSupport::BufferedLogger.new(File.join (@folder, "upload.log"))
@@ -43,11 +43,12 @@ class UploadMonitor
       log "#{taxon_name} not associated to #{@product.name}", :warn
     end
   end
-  def find_and_attach_image(filename, product = @product)
+  def find_and_attach_image(filename, product, alt_desc = "")
     #An image has an attachment (duh) and some object which 'views' it
     product_image = Image.new({:attachment => File.open(filename, 'rb'), 
                               :viewable => product,
-                              :position => product.images.length
+                              :position => product.images.length, 
+                              :alt => alt_desc
     }) 
     if product_image.save
       product.images << product_image 
@@ -69,6 +70,28 @@ class UploadMonitor
     pp.value = property_value
     pp.save
   end
+  def check_image(image_path)
+    num_images = 0
+    if File.exists?(image_path)
+      image_desc_file = File.join image_path, ExportConfig::IMAGES_DESC_FILE
+      if File.exists?(image_desc_file)
+        File.open(image_desc_file).readlines[1..-1].each do |image_row|
+          sku, image_name, alt_desc = image_row.chomp.split(":")
+          imagefiles = Dir.new(image_path).entries.select{|f|f.include?(image_name)}
+          if imagefiles.empty?  
+            log "file for images #{image_name} not found in #{image_path}"
+          else
+            num_images += 1
+          end
+        end
+      else
+        log "File #{image_desc_file} not found"
+      end
+    else
+      log "Directory #{image_path} not found"
+    end
+    num_images
+  end
 end
 
 class ProductUpload #< ActiveRecord::Base
@@ -87,31 +110,44 @@ class ProductUpload #< ActiveRecord::Base
         end
         # check that the sku is not taken!
         m.check_sku(product_info[:sku]) #  the most important line of this code :)
-        # check that there are some images
-        image_path = File.join folder, ExportConfig::IMAGES_FOLDER
-        raise "Directory #{image_path} not found" unless File.exists?(image_path)
-        imagefiles = Dir.new(image_path).entries.select{|f|f.include?(product_info[:sku])}
-        raise "No images found for #{product_info[:sku]}" if imagefiles.empty?
-
+        # check that there are some images, no image? skip import of this product
+        image_path = File.join folder, product_info[:sku], ExportConfig::IMAGES_FOLDER
+        num_images = m.check_image(image_path) 
+        # end of image check
+        unless num_images > 0
+          m.log "Jumping to next product", :warn
+          next
+        end
         # here we can create the product already 
         section = product_info.delete(:section)
         m.product = Product.new(product_info)
         unless m.product.valid?
-          log("A product could not be imported - :\n #{product_info.inspect}", :error)
+          m.log("A product could not be imported - :\n #{product_info.inspect}", :warn)
           next
         end
         #Save the object before creating asssociated objects 
         m.product.save
         # associate taxa (brand and section)
-        m.associate_this_taxon(ExportConfig::SECTION_TAXON, section)
+        if section.nil? or section.empty?
+          m.log("No section (Productos) associated to this product", :warn)
+        else
+          m.associate_this_taxon(ExportConfig::SECTION_TAXON, section)
+        end
         m.associate_this_taxon(ExportConfig::BRAND_TAXON, m.brand)
 
         # now images (one single folder for all images including those from the variants)
-        m.log("#{imagefiles.size} found for #{m.product.sku}")
-        imagefiles.each do |f| 
-          m.find_and_attach_image(File.join(image_path, f))
+        image_desc_file = File.join image_path, ExportConfig::IMAGES_DESC_FILE
+        if File.exists?(image_desc_file)
+          File.open(image_desc_file).readlines[1..-1].each do |image_row|
+            image_sku, image_name, alt_desc = image_row.chomp.split(":")
+            imagefiles = Dir.new(image_path).entries.select{|f|f.include?(image_name)}
+            if imagefiles.empty?  
+              m.log "file for images #{image_name} present in alt-desc list,  not found in #{image_path}"
+            else
+              m.find_and_attach_image(File.join(image_path, image_name), m.product, alt_desc)
+            end
+          end
         end
-
         # now stuff particular for the product
         product_folder = File.join(folder, m.product_folder)
         if File.exists?(product_folder)
@@ -140,28 +176,38 @@ class ProductUpload #< ActiveRecord::Base
                 v_info[label.to_sym] = variant_values[i]
               end
               m.log "Read variant #{v_info[:sku]} of #{m.product.sku} :" + v_info[:option_values]
-              ot, val = v_info[:option_values].split(",")
+              ot, val = v_info[:option_values].split(":")
               opt_type = m.product.option_types.select{|o| o.name == ot}.first # assume 1 
-              opt_type = m.product.option_types.create(:name => ot, :presentation => ot.capitalize) if opt_type.nil?
+              opt_type = m.product.option_types.create(:name => ot, :presentation => ot) if opt_type.nil?
               new_value = opt_type.option_values.create(:name => val, :presentation => val)
               ovariant = m.product.variants.create(:sku => v_info[:sku])
               ovariant.count_on_hand = v_info[:count_on_hand]
               ovariant.price = v_info[:price] unless v_info[:price].nil?
               ovariant.option_values << new_value
-              image_path = File.join folder, ExportConfig::IMAGES_FOLDER
-              imagefiles = Dir.new(image_path).entries.select{|f|f.include?(v_info[:sku])}
-              unless imagefiles.empty?
-                imagefiles.each{|f| m.find_and_attach_image(File.join(image_path, f), ovariant)} 
-                m.log("#{imagefiles.size} found for variant #{v_info[:sku]} of #{m.product.sku}")
-              end
               ovariant.save!
               m.log(" variant priced #{ovariant.price} with sku #{ovariant.price} saved for #{m.product.sku}")
             end
           end
+          # now go for the images of the variants
+          variants_image_desc_file = File.join image_path, ExportConfig::VARIANTS_IMAGES_DESC_FILE
+          if File.exists?(variants_image_desc_file)
+            File.open(variants_image_desc_file).readlines[1..-1].each do |image_row|
+              image_sku, image_name, alt_desc = image_row.chomp.split(":")
+              imagefiles = Dir.new(image_path).entries.select{|f|f.include?(image_name)}
+              if imagefiles.empty?  
+                m.log "image #{image_name} present in alt-desc list,  not found in #{image_path}"
+              else
+                image_variant = m.product.variants.select{|v|v.sku == image_sku}.first
+                m.find_and_attach_image(File.join(image_path, image_name), image_variant, alt_desc)
+                m.log("#{image_name} found for variant #{image_variant.sku} of #{m.product.sku}")
+              end
+            end
+          end
+          # imges of variants done
         else
           m.log "No folder found for #{m.product_folder}"
         end
-
+        m.log "Product  #{m.product.name} was imported"
       end
       [:notice, "ran #{m.brand}, selected #{folder} at #{Time.now}"]
     rescue Exception => exp
