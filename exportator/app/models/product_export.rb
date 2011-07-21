@@ -42,22 +42,25 @@ class ProductInfo
     end
     num_props
   end
-  def image_desc(image)
+  def image_desc(sku, image)
     @num_images += 1
-    [image.attachment_file_name, image.alt].join(':')
+    [sku, image.attachment_file_name, image.alt].join(':')
   end
   def export_images
     File.open(File.join(@images_folder, ExportConfig::IMAGES_DESC_FILE), "w") do |f|
-      f.puts "filename : alt-desc text" 
+      f.puts ExportConfig::IMAGES_DESC_HEADER 
       if @p.images.empty?
         elog "NO image for #{@p.name}, sku #{@p.sku}", :warn 
       else
-        @p.images.each {|image| f.puts image_desc(image)} 
+        @p.images.each {|image| f.puts image_desc(@p.sku, image)} 
       end
-      # now export the images of the variants
-      if @p.has_variants?
+    end
+    # now export the images of the variants
+    if @p.has_variants?
+      File.open(File.join(@images_folder, ExportConfig::VARIANTS_IMAGES_DESC_FILE), "w") do |f|
+        f.puts ExportConfig::IMAGES_DESC_HEADER 
         @p.variants.each do |variant|
-          variant.images.each {|v_image| f.puts image_desc(v_image)} unless variant.images.empty?
+          variant.images.each {|image| f.puts image_desc(variant.sku, image)} unless variant.images.empty?
         end
       end
     end
@@ -68,11 +71,16 @@ class ProductInfo
       File.open(File.join(@folder, ExportConfig::VARIANTS_FILE), "w") do |f|
         f.puts ExportConfig::VARIANT_HEADER.join(csv_sep)
         @p.variants.each do |v|
+          elog "var"
           vstr = [v.sku, v.count_on_hand, v.price].map{|x| x.to_s}.join(csv_sep)
           # now addd the single option type (there could be more...)
           raise "#{v.option_values.size} option values for #{v.name}, 1 expected" unless v.option_values.size == 1
           ov = v.option_values.first
+          elog "ov"
           ot = OptionType.find(ov.option_type.id)
+          elog "ot preosentation: #{ot.presentation}"
+          elog "ov preosentation: #{ov.presentation}"
+          raise "no presentation" if ot.presentation.nil?
           vstr += csv_sep + ot.presentation + ':' + ov.presentation
           f.puts vstr
         end
@@ -133,9 +141,13 @@ class ProductExport
             pstr = [hsections[p.id] || "", pi.to_csv_str(csv_sep)].join(csv_sep)
             f_full.puts [brand.name, pstr].join(csv_sep)
             f.puts pstr 
+            elog "export descriptions"
             pi.export_descriptions
+            elog "export properties"
             num_props = pi.export_properties
+            elog "export images"
             pi.export_images
+            elog "export variants"
             num_variants = pi.export_variants
             elog " exported incl. #{num_props} properties, #{pi.num_images} images, #{num_variants} variants"
           end
