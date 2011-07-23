@@ -18,7 +18,7 @@ height:280px;
   border-right:#ccc solid 1px;
   font-size: 1.0em;
 	width: 400px;
-	height:240px;
+	height:265px;
   background:#eee;
   padding:4px;
   float:left;
@@ -28,11 +28,20 @@ height:280px;
 }
 
 #present-right{
-  margin-left:20px;
-  padding:5px;
-  height:240px;
+  margin-left:15px;
+  height:275px;
   float:left;
+	background:#b3ef7d;
+	-moz-box-shadow: 5px 5px 10px #888888; /* Firefox 3.6 and earlier */
+  -webkit-box-shadow: 5px 5px 10px #888888; /* Safari */
+  box-shadow: 5px 5px 10px #888888;
+
+}
+
+#present-slider{
   background:#414141;
+	width:950px;
+	height:260px;
   -moz-box-shadow: 5px 5px 10px #888888; /* Firefox 3.6 and earlier */
   -webkit-box-shadow: 5px 5px 10px #888888; /* Safari */
   box-shadow: 5px 5px 10px #888888;

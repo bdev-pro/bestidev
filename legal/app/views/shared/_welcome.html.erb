@@ -4,27 +4,22 @@
 </h6><br /><h3>¡Envío Gratis para pedidos superiores a 120€!<br/><%= render 'shared/search' %></h3>
 </div>
 <div id="present-right">
-<div class="slider-wrapper theme-default">
 
-            <div class="ribbon"></div>
+<% # taxon is a helper from ApplicationHelper, note this depends on how we call the taxon (nav menu)  %>
+ <% [ "Atletismo", "Varios", "Nutrición", "Ciclismo", "Natación"] %>
 
-            <div id="slider" class="nivoSlider">
-								<!-- quitar widths! -->
-                <img src="images/nivo-slider/toystory.jpg" alt="" width="450px" />
-
-                <a href="http://dev7studios.com"><img src="images/nivo-slider/up.jpg" alt="" title="This is an example of a caption" width="450px"/></a>
-
-                <img src="images/nivo-slider/walle.jpg" alt="" width="450px"/>
-
-                <img src="images/nivo-slider/nemo.jpg" alt="" title="#htmlcaption" width="450px"/>
-
-            </div>
-
-            <div id="htmlcaption" class="nivo-html-caption">
-
-                <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
-
-            </div>
-
-        </div>
+ <table border="1px" height="260px">
+ <tr><td><h2>¿Qué necesitas?</h2></td></tr>
+ <tr><td>
+ <%= link_to ((image_tag 'homelinks/Atletismo_1.png', :mouseover => 'homelinks/Atletismo_2.png'), seo_url(taxon("Atletismo"))) %><br />
+ </td></tr>
+ <tr><td>
+ <%= link_to ((image_tag 'homelinks/Ciclismo_1.png', :mouseover => 'homelinks/Ciclismo_2.png'), seo_url(taxon("Ciclismo"))) %><br />
+ </td></tr>
+ <tr><td>
+ <%= link_to ((image_tag 'homelinks/Natacion_1.png', :mouseover => 'homelinks/Natacion_2.png'), seo_url(taxon("Natación"))) %><br />
+ </td></tr>
+ <tr><td>
+ <%= link_to ((image_tag 'homelinks/Nutricion_1.png', :mouseover => 'homelinks/Nutricion_2.png'), seo_url(taxon("Nutrición"))) %><br />
+ </td></tr></table>
 </div>
