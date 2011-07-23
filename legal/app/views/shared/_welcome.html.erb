@@ -1,3 +1,4 @@
+<% if not content_for?(:sidebar) %>
 <div id="present">
 <h2>Bienvenido!</h2>
 <h6>bestiaz.com, la <strong> tienda de triatlón online </strong>, por y para atletas. Material, nutrición, todo para hacerte el triatlón más facil. Si crees que falta algo en la web o tienes alguna duda, mándanos un email a info@bestiaz.com o déjanos un comentario en nuestro <%= link_to "blog" , "http://bestiaz.wordpress.com/" %>.
@@ -6,7 +7,7 @@
 <div id="present-right">
 
 <% # taxon is a helper from ApplicationHelper, note this depends on how we call the taxon (nav menu)  %>
- <% [ "Atletismo", "Varios", "Nutrición", "Ciclismo", "Natación"] %>
+<% [ "Atletismo", "Varios", "Nutrición", "Ciclismo", "Natación"] %>
 
  <table border="1px" height="260px">
  <tr><td><h2>¿Qué necesitas?</h2></td></tr>
@@ -23,3 +24,4 @@
  <%= link_to ((image_tag 'homelinks/Nutricion_1.png', :mouseover => 'homelinks/Nutricion_2.png'), seo_url(taxon("Nutrición"))) %><br />
  </td></tr></table>
 </div>
+<% end %>

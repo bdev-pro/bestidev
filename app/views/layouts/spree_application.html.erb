@@ -19,6 +19,7 @@
 
 <!-- fin_nivo_slider -->
 </head>
+
 <%
 if @body_class.nil?
   if content_for?(:sidebar)
@@ -28,10 +29,10 @@ if @body_class.nil?
   end
 end
  %>
+
 <body class="<%= @body_class %>" id="<%= @body_id %>">
   <div id="header" class="container_bg">
     <div class="container_cabe"><!--container cabe añadida para que la cabecera cuadre con el cuerpo-->
-
    <%=  logo   %>
     </div>
   </div>
@@ -39,23 +40,43 @@ end
   <div id="wrapper" class="container">
 <div id="login-bar">
 
-<!--Redes sociales -->
-<table border="0px";><tr><td width="50px">
-<h3>Síguenos:</h3></td><td width="150px">  
-<a href='http://blog.bestiaz.com/blog'><img src='images/social/wordpress.png' /></a> &nbsp;
-<a href='https://twitter.com/#!/bestiazShop'><img src='images/social/twitter.png' /></a> &nbsp;
-<a href='http://es-la.facebook.com/people/BestiazOnline-Tienda/100002273787518?sk=info'><img src='images/social/facebook.png' /></a> &nbsp;
-</td>
 
-<td>
+	<!--Redes sociales -->
+<table border="0px";>
+	<% if not content_for?(:sidebar) %>
+		<tr><td width="100px">
+		<h3>Síguenos:</h3></td><td width="130px"> 
+		<%= link_to (image_tag('social/wordpress.png'), 'http://blog.bestiaz.com/blog') %>
+		<%= link_to (image_tag('social/twitter.png'), 'http://twitter.com/#!/bestiazShop') %>
+		<%= link_to (image_tag('social/facebook.png'), 'http://es-la.facebook.com/people/BestiazOnline-Tienda/100002273787518?sk=info') %> 
+	<% else %>
+		<tr><td width="160px">
+		<h3>Síguenos:</h3>
+		<%= link_to (image_tag('social/wordpress.png'), 'http://blog.bestiaz.com/blog') %>
+    <%= link_to (image_tag('social/twitter.png'), 'http://twitter.com/#!/bestiazShop') %>
+    <%= link_to (image_tag('social/facebook.png'), 'http://es-la.facebook.com/people/BestiazOnline-Tienda/100002273787518?sk=info') %> 
+<% end %>
+</td>
 <!-- redes sociales fin -->
 
+<td><table border="0px"><tr><td>
+<% if content_for?(:sidebar) %>
+
+<!-- botones de navegación en productos -->
+<div id="links_secciones">
+<%= link_to ('Atletismo', seo_url(taxon("Atletismo"))) %> |
+<%= link_to ('Ciclismo', seo_url(taxon("Ciclismo"))) %> |
+<%= link_to ('Natación', seo_url(taxon("Natación"))) %> |
+<%= link_to ('Nutrición', seo_url(taxon("Nutrición"))) %>
+</div>
+<% end %>
+</td><td>
    <ul id="nav-bar">
         <% if current_user %>
-           <li><%= link_to t('my_account'), account_path %></li>
+            <li><%= link_to t('my_account'), account_path %></li>
            <li><%= link_to t('logout'), destroy_user_session_path %></li>
          <% else %>
-           <li><%= link_to t('log_in'), login_path %></li>
+           <!-- <li><%= link_to t('log_in'), login_path %></li> -->
          <% end %>
          <% if store_menu? %>
           <!-- partial 'shared/store_menu' start -->
@@ -66,6 +87,7 @@ end
          <!--<%= render 'shared/nav_bar' %> -->
         </ul>
     </div>
+</td></td></table>
 </td></tr></table>
     
 
