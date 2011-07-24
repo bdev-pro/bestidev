@@ -20,7 +20,8 @@ input[type="button"].homepager {
 
 #mas_solicitados{
    color:black;
-   background:#9aeb51;
+   /*background:#9aeb51;*/
+	background:#e0e27f;
    font-size:15px;
    font-weight:bold;
    border:1px solid black;

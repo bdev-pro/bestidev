@@ -51,7 +51,8 @@ height:280px;
   margin-left:15px;
   height:275px;
   float:left;
-	background:#b3ef7d;
+	/*background:#b3ef7d;*/
+	background:#e0e27f;
 	-moz-box-shadow: 5px 5px 10px #888888; /* Firefox 3.6 and earlier */
   -webkit-box-shadow: 5px 5px 10px #888888; /* Safari */
   box-shadow: 5px 5px 10px #888888;
