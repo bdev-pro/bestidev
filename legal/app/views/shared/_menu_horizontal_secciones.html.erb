@@ -1,0 +1,10 @@
+ <% if content_for?(:sidebar) %>
+ <!-- botones de navegación en productos -->
+ <div id="links_secciones">
+ <%= link_to('Atletismo', seo_url(taxon("Atletismo"))) %> |
+ <%= link_to('Ciclismo', seo_url(taxon("Ciclismo"))) %> |
+ <%= link_to('Natación', seo_url(taxon("Natación"))) %> |
+ <%= link_to('Nutrición', seo_url(taxon("Nutrición"))) %>
+ </div>
+ <% end %>
+

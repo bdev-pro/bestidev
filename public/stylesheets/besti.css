@@ -7,6 +7,11 @@ body {
 	background: url('/images/background_patterns/background_bestiaz.jpg') repeat-x;
 }
 
+
+#marcas{
+background: url('/images/footer/marcas.jpg');
+}
+
 #header a { color: #FFFFFF; }
 #header a:hover { color: #000000; }
 
