@@ -4,22 +4,7 @@
 <%= hook :inside_head do %>
   <%= render :partial => 'shared/head'%>
 <% end %>
-
-<!-- Para nivo_slider 
-
-<link rel="stylesheet" href="/stylesheets/nivo-slider/styles.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/stylesheets/nivo-slider/nivo-slider.css" type="text/css" media="screen" />
-<script type="text/javascript" src="/javascripts/nivo-slider/jquery-1.6.1.min.js"></script>
-<script type="text/javascript" src="/javascripts/nivo-slider/jquery.nivo.slider.pack.js"></script>
-<script type="text/javascript">
-    $(window).load(function() {
-        $('#slider').nivoSlider();
-    });
-    </script>
-
- -->
-<!-- fin nivo_slider -->
-
+<%= yield(:slider_head) -%>
 </head>
 
 <%

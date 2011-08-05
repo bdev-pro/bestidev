@@ -1,7 +1,23 @@
 <hr>
 <div id="welcome">
-<%= render "shared/welcome" %>
+  <%= render "shared/welcome" %>
 </div>
 <hr>
+<div id="present-slider">
 
-<div id="mas_solicitados">Lo mas pedido: échale un vistazo a los productos mas vendidos en nuestra tienda de triatlon </div>
+  <div class="slider-wrapper theme-default">
+    <div class="ribbon"></div>
+    <div id="slider" class="nivoSlider">
+      <!-- quitar widths y heights!! -->
+      <img src="images/nivo-slider/toystory.jpg" alt="" width="950px" height="230px" />
+      <a href="http://dev7studios.com"><img src="images/nivo-slider/up.jpg" alt="" title="This is an example of a caption" width="950px" height="230px"/></a>
+      <img src="images/nivo-slider/walle.jpg" alt="" width="950px" height="230px"/>
+      <img src="images/nivo-slider/nemo.jpg" alt="" title="#htmlcaption"/>
+    </div>
+    <div id="htmlcaption" class="nivo-html-caption">
+      <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
+    </div>
+  </div>
+</div>
+
+<!-- <div id="mas_solicitados">Lo mas pedido: échale un vistazo a los productos mas vendidos en nuestra tienda de triatlon </div> -->
