@@ -13,6 +13,9 @@ class PagesController < Spree::BaseController
   def who_we_are
   end
 
+  def our_athletes
+  end
+
   def fake_home
   end
 
