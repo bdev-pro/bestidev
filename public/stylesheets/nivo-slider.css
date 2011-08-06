@@ -1,7 +1,7 @@
 #slider {
     position:relative;
-    width:950px; /* Change this to your images width */
-    height:230px; /* Change this to your images height */
+    width:400px; /* Change this to your images width */
+    height:159px; /* Change this to your images height */
     background:url(images/loading.gif) no-repeat 50% 50%;
 }
 #slider img {

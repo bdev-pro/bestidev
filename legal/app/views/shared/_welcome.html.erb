@@ -1,27 +1,13 @@
 <% if not content_for?(:sidebar) %>
 <div id="present">
-<h2>Bienvenido!</h2>
-<h6>bestiaz.com, la <strong> tienda de triatlón online </strong>, por y para atletas. Material, nutrición, todo para hacerte el triatlón más facil. Si crees que falta algo en la web o tienes alguna duda, mándanos un email a info@bestiaz.com o déjanos un comentario en nuestro <%= link_to "blog" , "http://bestiaz.wordpress.com/" %>.
-</h6><br /><h3>¡Envío Gratis para pedidos superiores a 120€!<br/><%= render 'shared/search' %></h3>
+  <h2>Bienvenido!</h2>
+  <h6>
+    bestiaz.com, la <strong> tienda de triatlón online </strong>, por y para atletas. Material, nutrición, todo para hacerte el triatlón más facil. Si crees que falta algo en la web o tienes alguna duda, mándanos un email a info@bestiaz.com o déjanos un comentario en nuestro <%= link_to "blog" , "http://bestiaz.wordpress.com/" %>.
+  </h6>
+  <br />
+  <h3>¡Envío Gratis para pedidos superiores a 120€!<br/><%= render 'shared/search' %></h3>
 </div>
 <div id="present-right">
-
-<% # taxon is a helper from ApplicationHelper, note this depends on how we call the taxon (nav menu)  %>
-<% [ "Atletismo", "Varios", "Nutrición", "Ciclismo", "Natación"] %>
-
- <table border="1px" height="260px">
- <tr><td><h2>¿Qué necesitas?</h2></td></tr>
- <tr><td>
- <%= link_to((image_tag 'homelinks/Atletismo_1.png', :mouseover => 'homelinks/Atletismo_2.png'), seo_url(taxon("Atletismo"))) %><br />
- </td></tr>
- <tr><td>
- <%= link_to((image_tag 'homelinks/Ciclismo_1.png', :mouseover => 'homelinks/Ciclismo_2.png'), seo_url(taxon("Ciclismo"))) %><br />
- </td></tr>
- <tr><td>
- <%= link_to((image_tag 'homelinks/Natacion_1.png', :mouseover => 'homelinks/Natacion_2.png'), seo_url(taxon("Natación"))) %><br />
- </td></tr>
- <tr><td>
- <%= link_to((image_tag 'homelinks/Nutricion_1.png', :mouseover => 'homelinks/Nutricion_2.png'), seo_url(taxon("Nutrición"))) %><br />
- </td></tr></table>
+  <%= render 'shared/navibuttons' %>
 </div>
 <% end %>

@@ -5,6 +5,11 @@ module ApplicationHelper
     # Shop by first option, less likely to chanche:
     Taxonomy.all.first.root.children.find_by_name(name)
   end
+  def brand_url(brand)
+    taxonomies = Taxonomy.find_by_name("Marcas").root.children
+    brand_t = taxonomies.find_by_name(brand) || taxonomies.first
+    seo_url(brand_t)
+  end
   def variant_price_diff_format(variant)
     return product_price(variant) unless variant.product.master.price
     diff = product_price(variant, :format_as_currency => false) - product_price(variant.product, :format_as_currency => false)

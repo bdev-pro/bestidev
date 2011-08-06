@@ -66,8 +66,8 @@ height:280px;
 
 #present-slider{
   background:#414141;
-	width:950px;
-	height:260px;
+	width:400;
+	height:265px;
   -moz-box-shadow: 5px 5px 10px #888888; /* Firefox 3.6 and earlier */
   -webkit-box-shadow: 5px 5px 10px #888888; /* Safari */
   box-shadow: 5px 5px 10px #888888;
