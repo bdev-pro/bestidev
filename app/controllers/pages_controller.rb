@@ -19,4 +19,7 @@ class PagesController < Spree::BaseController
   def fake_home
   end
 
+  def bdev
+  end
+
 end

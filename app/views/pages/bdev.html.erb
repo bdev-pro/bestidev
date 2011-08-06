@@ -1,0 +1,8 @@
+<%= stylesheet_link_tag "staticpage" %>
+<%= render :partial => "shared/languages_header" %>
+<%  locale = session[:locale] || Spree::Config[:default_locale]  %>
+<% if locale == :es  %>
+  <%= render :partial => "bdev_es" %>
+<% else  %>
+  <%= render :partial => "bdev_en" %>
+<% end  %>

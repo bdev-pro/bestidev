@@ -4,6 +4,7 @@ Onlineshop::Application.routes.draw do
   get "pages/conditions"
   get "pages/who_we_are"
   get "pages/our_athletes"
+  get "pages/bdev"
   #get "pages/fake_home"
 
   # The priority is based upon order of creation:
