@@ -91,7 +91,7 @@
 #slider {
     position:relative;
     width:400px; /* Change this to your images width */
-    height:265px; /* Change this to your images height */
+    height:275px; /* Change this to your images height */
     background:url(/stylesheets/nivo-slider/loading.gif) no-repeat 50% 50%;
 }
 #slider img {
