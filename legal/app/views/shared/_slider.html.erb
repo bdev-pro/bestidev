@@ -1,12 +1,26 @@
- <!--define here the files that should be included in the slider -->
+<%- content_for(:slider_head) do -%>
+  <link rel="stylesheet" href="/stylesheets/nivo-slider/styles.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/stylesheets/nivo-slider/nivo-slider.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="/javascripts/nivo-slider/jquery-1.6.1.min.js"></script>
+  <script type="text/javascript" src="/javascripts/nivo-slider/jquery.nivo.slider.pack.js"></script>
+  <script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider({
+          animSpeed:500, // Slide transition speed
+          pauseTime:6000, // How long each slide will show
+          directionNav:false, // Next & Prev navigation
+          directionNavHide:true, // Only show on hover
+          controlNav:false, // 1,2,3... navigation
+          });
+        });
+</script>
+<%- end -%>
 
- <div class="slider-wrapper theme-default">
-    <div class="ribbon"></div>
+<div class="slider-wrapper theme-default">
+  <!-- <div class="ribbon"></div> -->
     <div id="slider" class="nivoSlider">
-        <%= image_tag "nivo-slider/envio_gratis.jpg" %> 
-        <%= link_to(image_tag("nivo-slider/e_pulsor.jpg"), brand_url("Camaro")) %>
+      <%= image_tag "nivo-slider/envio_gratis.jpg", :title => "ahorrate los costes de envio" %> 
+      <%= link_to(image_tag("nivo-slider/e_pulsor.jpg"), brand_url("Camaro")) %>
     </div>
-    <div id="htmlcaption" class="nivo-html-caption">
-      <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
-    </div>
-  </div>
+  <!--</div>-->
+</div>

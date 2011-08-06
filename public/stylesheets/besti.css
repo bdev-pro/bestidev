@@ -22,8 +22,8 @@ height:280px;
 #present{
   border-right:#ccc solid 1px;
   font-size: 1.0em;
-	width: 400px;
-	height:265px;
+	width: 950px;
+	height:120px;
   background:#eee;
   padding:4px;
   float:left;
@@ -52,8 +52,8 @@ height:280px;
 	border-left:4px solid black;
 }
 
-#present-right{
-  margin-left:15px;
+#present-buttons{
+  margin-right:15px;
   height:275px;
   float:left;
 	/*background:#b3ef7d;*/
@@ -66,8 +66,9 @@ height:280px;
 
 #present-slider{
   background:#414141;
-	width:400;
-	height:265px;
+  float:right;
+	width:400px;
+	height:275px;
   -moz-box-shadow: 5px 5px 10px #888888; /* Firefox 3.6 and earlier */
   -webkit-box-shadow: 5px 5px 10px #888888; /* Safari */
   box-shadow: 5px 5px 10px #888888;

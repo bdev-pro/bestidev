@@ -90,8 +90,8 @@
 }
 #slider {
     position:relative;
-    width:500px; /* Change this to your images width */
-    height:240px; /* Change this to your images height */
+    width:400px; /* Change this to your images width */
+    height:265px; /* Change this to your images height */
     background:url(/stylesheets/nivo-slider/loading.gif) no-repeat 50% 50%;
 }
 #slider img {
