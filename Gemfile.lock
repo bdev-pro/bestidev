@@ -33,13 +33,6 @@ PATH
       spree_core (>= 0.40.3)
 
 PATH
-  remote: importator
-  specs:
-    importator (1.0.0)
-      fastercsv
-      spree_core (>= 0.40.0)
-
-PATH
   remote: legal
   specs:
     legal (1.0.0)
@@ -100,7 +93,6 @@ GEM
       abstract (>= 1.0.0)
     faker (0.9.4)
       i18n (~> 0.4)
-    fastercsv (1.5.4)
     highline (1.5.1)
     i18n (0.5.0)
     jquery-rails (0.2.2)
@@ -191,7 +183,6 @@ PLATFORMS
 
 DEPENDENCIES
   exportator!
-  importator!
   legal!
   products_visibility!
   rails (= 3.0.4)

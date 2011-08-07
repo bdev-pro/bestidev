@@ -18,7 +18,6 @@ gem 'spree_homepage', :git => 'git://github.com/dwradcliffe/spree-homepage.git'
 
 
 gem "legal", :require => "legal", :path => "legal"
-gem "importator", :require => "importator", :path => "importator"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
