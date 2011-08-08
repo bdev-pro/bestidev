@@ -33,7 +33,11 @@ end
 <!-- redes sociales fin -->
 
 <td><table border="0px"><tr><td>
+<% if content_for?(:sidebar) %>
 <%=render :partial => 'shared/menu_horizontal_secciones'%>
+<% else %>
+<%=render :partial => 'shared/buscador'%>
+<% end %>
 </td><td>
    <ul id="nav-bar">
         <% if current_user %>
