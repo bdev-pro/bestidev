@@ -1,85 +1,87 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<%= hook :inside_head do %>
-  <%= render :partial => 'shared/head'%>
-<% end %>
-<%= yield(:slider_head) -%>
-</head>
+  <head>
+    <%= hook :inside_head do %>
+      <%= render :partial => 'shared/head'%>
+    <% end %>
+    <%= yield(:slider_head) -%>
+  </head>
 
-<%
-if @body_class.nil?
-  if content_for?(:sidebar)
-    @body_class = 'two-col'
-  else
-    @body_class = 'one-col'
-  end
-end
- %>
+  <%
+    if @body_class.nil?
+      if content_for?(:sidebar)
+        @body_class = 'two-col'
+      else
+        @body_class = 'one-col'
+      end
+    end
+  %>
 
-<body class="<%= @body_class %>" id="<%= @body_id %>">
-  <div id="header" class="container_bg">
-    <div class="container_cabe"><!--container cabe añadida para que la cabecera cuadre con el cuerpo-->
-   <%=  logo   %>
+  <body class="<%= @body_class %>" id="<%= @body_id %>">
+    <div id="header" class="container_bg">
+      <div class="container_cabe"><!--container cabe añadida para que la cabecera cuadre con el cuerpo-->
+        <%=  logo   %>
+      </div>
     </div>
-  </div>
-<br />
-  <div id="wrapper" class="container">
-<div id="login-bar">
+    <br />
+    <div id="wrapper" class="container">
+      <div id="login-bar">
 
-<!--Redes sociales -->
-<table border="0px">
-<%= render :partial => 'shared/redes_sociales'%>
-<!-- redes sociales fin -->
+        <!--Redes sociales -->
+        <table border="0px">
+          <%= render :partial => 'shared/redes_sociales'%>
+          <!-- redes sociales fin -->
 
-<td><table border="0px"><tr><td>
-<% if content_for?(:sidebar) %>
-<%=render :partial => 'shared/menu_horizontal_secciones'%>
-<% else %>
-<%=render :partial => 'shared/buscador'%>
-<% end %>
-</td><td>
-   <ul id="nav-bar">
-        <% if current_user %>
-            <li><%= link_to t('my_account'), account_path %></li>
-           <li><%= link_to t('logout'), destroy_user_session_path %></li>
-         <% else %>
-           <!-- <li><%= link_to t('log_in'), login_path %></li> -->
-         <% end %>
-         <% if store_menu? %>
-          <!-- partial 'shared/store_menu' start -->
-          <!--<li><%= link_to t("home") , root_path %></li> -->
-           <li class="cart-indicator"><%= link_to_cart %></li>
-           <!-- partial 'shared/store_menu' end -->
-         <% end %>
-         <!--<%= render 'shared/nav_bar' %> -->
-        </ul>
-    </div>
-</td></td></table>
-</td></tr></table>
-    
+          <td><table border="0px"><tr><td>
+                  <% if content_for?(:sidebar) %>
+                    <%=render :partial => 'shared/menu_horizontal_secciones'%>
+                    <hr>
+                  <% end %>
+                  <%=render :partial => 'shared/buscador'%>
+                  </td><td>
+                  <ul id="nav-bar">
+                    <% if current_user %>
+                      <li><%= link_to t('my_account'), account_path %></li>
+                      <li><%= link_to t('logout'), destroy_user_session_path %></li>
+                    <% else %>
+                      <!-- <li><%= link_to t('log_in'), login_path %></li> -->
+                    <% end %>
+                    <% if store_menu? %>
+                      <!-- partial 'shared/store_menu' start -->
+                      <!--<li><%= link_to t("home") , root_path %></li> -->
+                      <li class="cart-indicator"><%= link_to_cart %></li>
+                      <!-- partial 'shared/store_menu' end -->
+                    <% end %>
+                    <!--<%= render 'shared/nav_bar' %> -->
+                  </ul>
+                </div>
+          </td></td></table>
+    </td></tr></table>
 
-<% if content_for?(:sidebar) %>
-    <div id="sidebar">
-      <%= hook :sidebar do %>
-        <%= yield :sidebar %>
-      <% end %>
-    </div>
+
+    <% if content_for?(:sidebar) %>
+      <div id="sidebar">
+        <%= hook :sidebar do %>
+          <%= yield :sidebar %>
+        <% end %>
+      </div>
     <% end %>
 
     <div id="content">
 
       <%= breadcrumbs(@taxon) if @taxon %>
       <% if flash.notice %>
-      <div class="flash notice"><%= flash.notice %></div>
+        <div class="flash notice"><%= flash.notice %></div>
       <% end %>
       <% if flash[:error] %>
-      <div class="flash errors"><%= flash[:error] %></div>
+        <div class="flash errors"><%= flash[:error] %></div>
       <% end %>
       <%= yield %>
     </div>
-		<%= render :partial => 'shared/marcas'%>
     <%= render :partial => 'shared/footer'%>
+    <% unless content_for?(:sidebar) %>
+      <%= render :partial => 'shared/marcas'%>
+    <% end %>
   </div>
 
 </body>
