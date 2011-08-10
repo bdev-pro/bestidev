@@ -1,0 +1,33 @@
+<div id="login-bar">
+	<!-- Redes sociales -->
+	<div id="redes_sociales">
+		<%= render :partial => 'shared/redes_sociales'%>
+	</div>
+
+	<!-- secciones menú horizontal y buscador -->
+	<div id="secciones_buscador">
+		<% if content_for?(:sidebar) %>
+			<%=render :partial => 'shared/menu_horizontal_secciones'%>
+		<% end %> 
+		<%=render :partial => 'shared/buscador'%>
+	</div>
+  <div id="login-nav">       
+		<ul id="nav-bar">
+			<% if current_user %>
+				<li><%= link_to t('my_account'), account_path %></li>
+				<li><%= link_to t('logout'), destroy_user_session_path %></li>
+			<% else %>
+				<!-- <li><%= link_to t('log_in'), login_path %></li> -->
+			<% end %>
+			
+			<% if store_menu? %>
+				<!-- partial 'shared/store_menu' start -->
+				<!--<li><%= link_to t("home") , root_path %></li> -->
+				<li class="cart-indicator"><%= link_to_cart %></li>
+				<!-- partial 'shared/store_menu' end -->
+			<% end %>
+			
+			<!--<%= render 'shared/nav_bar' %> -->
+		</ul>
+	</div>
+</div>

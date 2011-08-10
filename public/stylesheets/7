@@ -8,38 +8,33 @@ body {
 }
 
 #relleno{
-	height:221px;
+	height:223px;
 	width:100%;
 	display:block;
 }
 
 #menu_cab{
-	width:43%;
-  color:white;
+	width:41%;
 	margin-left:60px;
-	background:black;
-	border:1px solid #eee;
-	font-size:1.3em;
-	float:left;
+	background:#eee;
+	border:1px solid #fff;
 }
 
 #menu_cab a{
 	text-decoration:none;
 	font-weight:bold;
-	font-size:1.0em;
-	color:#9de039;
+	font-size:1.3em;
+	color:black;
 }
 
 #menu_cab a:hover { 
-	background:white;
-	color: black;
+	color: #9de039;
+	background:#999; 
 }
 
-#inicio_link a{
-	color:white;
-	float:left;
-	margin-top:1px;
-	margin-bottom:1px;
+.inicio_lin a{
+	text-decoration:none;
+	color:black;
 }
 
 #marcas{
@@ -103,8 +98,6 @@ height:280px;
 	font-family:Verdana;
 	font-weight:bold;
 	font-size:1.2em;
-	background:#dde075;
-	border: 1px solid black;
 }
 
 #present-slider{

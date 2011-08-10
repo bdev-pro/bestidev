@@ -18,46 +18,21 @@
   %>
 
   <body class="<%= @body_class %>" id="<%= @body_id %>">
-    <div id="header" class="container_bg">
       <div class="container_cabe"><!--container cabe añadida para que la cabecera cuadre con el cuerpo-->
-        <%=  logo   %>
+				<div id="relleno"></div>
+				<div id="menu_cab">
+					<div id="inicio_link"><%= link_to "INICIO" , root_path %></div>
+					| <%= link_to " Blog" , "http://bestiaz.wordpress.com/" %>
+ 					| <%= link_to " Quienes somos" , pages_who_we_are_path %>
+ 					| <%= link_to " Nuestros Atletas" , pages_our_athletes_path %>
+ 					| <%= link_to "Bdev" , pages_bdev_path %>
+
+				</div>
       </div>
-    </div>
     <br />
     <div id="wrapper" class="container">
-      <div id="login-bar">
-
-        <!--Redes sociales -->
-        <table border="0px">
-          <%= render :partial => 'shared/redes_sociales'%>
-          <!-- redes sociales fin -->
-
-          <td><table border="0px"><tr><td>
-                  <% if content_for?(:sidebar) %>
-                    <%=render :partial => 'shared/menu_horizontal_secciones'%>
-                    <hr>
-                  <% end %>
-                  <%=render :partial => 'shared/buscador'%>
-                  </td><td>
-                  <ul id="nav-bar">
-                    <% if current_user %>
-                      <li><%= link_to t('my_account'), account_path %></li>
-                      <li><%= link_to t('logout'), destroy_user_session_path %></li>
-                    <% else %>
-                      <!-- <li><%= link_to t('log_in'), login_path %></li> -->
-                    <% end %>
-                    <% if store_menu? %>
-                      <!-- partial 'shared/store_menu' start -->
-                      <!--<li><%= link_to t("home") , root_path %></li> -->
-                      <li class="cart-indicator"><%= link_to_cart %></li>
-                      <!-- partial 'shared/store_menu' end -->
-                    <% end %>
-                    <!--<%= render 'shared/nav_bar' %> -->
-                  </ul>
-                </div>
-          </td></td></table>
-    </td></tr></table>
-
+		
+		<%= render :partial => 'shared/login-bar' %>
 
     <% if content_for?(:sidebar) %>
       <div id="sidebar">

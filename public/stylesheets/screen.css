@@ -290,9 +290,11 @@ body.two-col #wrapper { background-image: url(../images/wrapper-back-2_fer.png);
 
 .container_cabe{
   width:980px;
+	height:250px;
   margin:0 auto;
   overflow: hidden;
   display:block;
+	background:url(../images/Cabecera_precipicio_retocada.png);
 }
 
 /*fin*/
