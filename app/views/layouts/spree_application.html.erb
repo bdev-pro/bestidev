@@ -43,7 +43,9 @@
       <%= yield %>
     </div>
     <%= render :partial => 'shared/footer'%>
-    <% unless content_for?(:sidebar) %>
+    <% if content_for?(:sidebar) %>
+      <%= render :partial => 'shared/slogan_prices'%>
+    <% else %>
       <%= render :partial => 'shared/marcas'%>
     <% end %>
   </div>

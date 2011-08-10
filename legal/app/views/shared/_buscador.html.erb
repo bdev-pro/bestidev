@@ -1,3 +1,4 @@
- 
-  <span class="slogan">Si encuentras un producto mas barato, escríbenos a info@bestiaz.com</span>
+<% unless content_for?(:sidebar) # show only in the front page%> 
+<%= render 'shared/slogan_prices' %>
+<% end %> 
 <%= render 'shared/search' %>

@@ -67,8 +67,9 @@ height:280px;
 }
 
 #links_secciones{
-  font-weight:bold;
-	font-size:1.2em;
+ /* font-weight:bold; */
+	font-size:2.0em;
+	margin-bottom:15px;
 }
 #links_secciones a{
 	text-decoration:none;
@@ -101,7 +102,7 @@ height:280px;
 .slogan{
 	color:black;
 	font-family:Verdana;
-	font-weight:bold;
+	/*font-weight:bold;  */
 	font-size:1.2em;
 	background:#dde075;
 	border: 1px solid black;
@@ -150,7 +151,7 @@ ul#footer-bar li {
 #secciones_buscador{
 	width:62%;
   float:left;
-  height:70px;
+  height:102px;
 }
 
 ul#nav-bar {
@@ -174,13 +175,14 @@ ul#nav-bar li.cart-indicator a.full { background-image: url(../images/cart-full_
 
 #keywords {
    background-color:#FFF;
-   color:#B0AA9A;
+   /*color:#B0AA9A; */
+   color:black; 
    height:16px;
    padding-left:20px;
    padding-top:2px;
    padding-right:5px;
    width:240px;
-   margin-top:1px;
+   margin-top:10px;
    background-image:url('../images/search.png');
    background-repeat:no-repeat;
 }
