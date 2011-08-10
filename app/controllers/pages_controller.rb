@@ -1,6 +1,6 @@
 class PagesController < Spree::BaseController
 
-  layout 'spree_application'
+  layout 'besti_static'
   def contact
   end
 
