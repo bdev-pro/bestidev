@@ -27,7 +27,8 @@ body {
 	text-decoration:none;
 	font-weight:bold;
 	font-size:1.0em;
-	color:#9de039;
+	/*color:#9de039;*/
+	color:#e0e27f;
 }
 
 #menu_cab a:hover { 

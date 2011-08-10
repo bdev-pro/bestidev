@@ -123,7 +123,8 @@ p img.right {
 }
 a {
   text-decoration: underline;
-  color: #2e6ab1;
+  /*color: #2e6ab1; */
+  color: #666666; 
 }
 blockquote {
   margin: 1.5em;
@@ -724,7 +725,8 @@ p a.button img { margin: 0 5px 0 0; }
 p button img { margin: 0 5px 0 0; }
 .prices { font-weight: bold; }
 .prices #product-details .prices { font-size: 1.25em; }
-.price.selling { color: #2e6ab1; }
+/*.price.selling { color: #2e6ab1; }*/
+.price.selling { color: #9c3e18; }
 #product-details .price.selling { font-size: 1.5em; }
 .price.diff {
   font-style: italic;
