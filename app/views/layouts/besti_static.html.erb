@@ -17,7 +17,11 @@
           <div class="flash errors"><%= flash[:error] %></div>
         <% end %>
         <%= yield %>
-        <%= render :partial => 'shared/footer'%>
+        <div id="footer">
+          <div class="right">
+            <%= render :partial => 'shared/legal_footer_right'%>
+          </div>
+        </div>
       </div>
     </div>
 
