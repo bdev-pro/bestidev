@@ -20,6 +20,7 @@ class PagesController < Spree::BaseController
   end
 
   def bdev
+    @current_locale =  session[:locale] || Spree::Config[:default_locale]
   end
 
 end
