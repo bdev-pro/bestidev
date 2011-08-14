@@ -26,17 +26,17 @@
     <br style='clear:both;' />
     <p>
       <%= hook :coupon_code_label do %>
-      <label><%= t(:coupon_code) %></label><br />
+        <label><%= t(:coupon_code) %></label><br />
       <% end %>
       <br />
       <%= hook :coupon_code_text_field do %>
-      <%= form.text_field :coupon_code, :size => 19 %>
+        <%= form.text_field :coupon_code, :size => 19 %>
       <% end %>
     </p>
   <% end %>
 </fieldset>
-
 <hr class="space" />
+      <%= render :partial => "shared/confirm_legal_read" %>
 <div class="form-buttons">
   <input type="submit" class="continue button primary" value="<%=t("save_and_continue") %>" />
 </div>
