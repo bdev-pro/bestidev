@@ -1,6 +1,8 @@
 class PagesController < Spree::BaseController
 
   layout 'besti_static'
+  before_filter :fetch_locale, :only =>[:who_we_are, :bdev]
+
   def contact
   end
 
@@ -20,7 +22,11 @@ class PagesController < Spree::BaseController
   end
 
   def bdev
-    @current_locale =  session[:locale] || Spree::Config[:default_locale]
   end
+
+  private
+    def fetch_locale
+      @current_locale =  session[:locale] || Spree::Config[:default_locale]
+    end
 
 end
