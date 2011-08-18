@@ -6,6 +6,10 @@
       <p class="prices">
         <%= t("price") %>
         <br />
+        <% unless @product.old_price.nil? %>
+          <span class="price discounted_big"><%= format_price(@product.old_price) %></span>
+          <br />
+        <% end %>
         <span class="price selling"><%= product_price(@product) %></span>
       </p>
     <% end %>

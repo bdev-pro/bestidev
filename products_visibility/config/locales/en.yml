@@ -2,3 +2,5 @@
 en:
   ext_visibility:
       visibility: Visibility rank (1 max visible, 5 min visible) 
+  ext_old_price:
+      old_price: Previous price (before discount)

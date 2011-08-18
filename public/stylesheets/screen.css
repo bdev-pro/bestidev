@@ -727,6 +727,16 @@ p button img { margin: 0 5px 0 0; }
 .prices #product-details .prices { font-size: 1.25em; }
 /*.price.selling { color: #2e6ab1; }*/
 .price.selling { color: #9c3e18; }
+.price.discounted {
+  /*color: #FF0000;*/
+  color: #FF5353;
+  text-decoration: line-through;
+ }
+.price.discounted_big {
+  font-size: 1.5em;
+  color: #FF5353;
+  text-decoration: line-through;
+ }
 #product-details .price.selling { font-size: 1.5em; }
 .price.diff {
   font-style: italic;

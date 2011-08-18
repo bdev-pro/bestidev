@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110703111849) do
+ActiveRecord::Schema.define(:version => 20110817231045) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -335,6 +335,7 @@ ActiveRecord::Schema.define(:version => 20110703111849) do
     t.integer  "count_on_hand",        :default => 0,     :null => false
     t.boolean  "show_on_homepage",     :default => false
     t.integer  "visibility",           :default => 5
+    t.decimal  "old_price"
   end
 
   add_index "products", ["available_on"], :name => "index_products_on_available_on"
