@@ -1,8 +1,20 @@
- <!-- botones de navegación en productos -->
- <div id="links_secciones">
- <%= link_to('Atletismo', seo_url(taxon("Atletismo"))) %> |
- <%= link_to('Ciclismo', seo_url(taxon("Ciclismo"))) %> |
- <%= link_to('Natación', seo_url(taxon("Natación"))) %> |
- <%= link_to('Nutrición', seo_url(taxon("Nutrición"))) %>
- </div>
+<!-- botones de navegación en productos -->
+<!--<div id="links_secciones"> -->
+  <ul id="sddm">
+    <% %w(Atletismo Ciclismo Natación Nutrición).each_with_index do |name, i| %> 
+      <li>
+        <!-- is this obtrusive? -->
+        <%= link_to(name, seo_url(taxon(name)),:onmouseover => "mopen('m#{i}')", :onmouseout => "mclosetime()" ) %> 
+        <div id=<%="m#{i}"%> onmouseover="mcancelclosetime()" onmouseout="mclosetime()"> 
+          <% subcategories = subcategories_of(name) %> 
+          <% unless subcategories.empty? %> 
+            <% subcategories.each do |subcategory| %> 
+              <%= link_to(subcategory.name, seo_url(subcategory)) %> 
+            <% end %> 
+          <% end %> 
+        </div>
+      </li>
+    <% end %> 
+  </ul>
+<!--</div>-->
 

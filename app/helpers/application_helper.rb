@@ -5,6 +5,11 @@ module ApplicationHelper
     # Shop by first option, less likely to chanche:
     Taxonomy.all.first.root.children.find_by_name(name)
   end
+  def subcategories_of(name)
+    # returns the subcategories
+    taxon_id = Taxon.find_by_name(name).id
+    Taxon.select{|t| t.parent_id == taxon_id}
+  end
   def brand_url(brand)
     taxonomies = Taxonomy.find_by_name("Marcas").root.children
     brand_t = taxonomies.find_by_name(brand) || taxonomies.first
