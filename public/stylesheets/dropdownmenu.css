@@ -37,11 +37,13 @@
 	padding: 0;
 	background: #EAEBD8;
 	/*border: 1px solid #5970B2 */
+  z-index:1;
 	border: 1px solid #111 
 }
 
 	#sddm div a
-	{	position: relative;
+	{	
+    position: relative;
 		display: block;
 		margin: 0;
 		padding: 5px 10px;
@@ -52,6 +54,7 @@
 		background: #EAEBD8;
 		/*color: #2875DE;*/
 		color: #111;
+    z-index:1;
 		font: 16px arial}
 
 	#sddm div a:hover
