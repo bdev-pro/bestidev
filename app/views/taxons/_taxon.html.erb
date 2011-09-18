@@ -1,0 +1,5 @@
+<div class="taxon">
+  <% link_label = taxon.name + " (#{taxon.products.uniq.size})"  %>
+  <h2><%= link_to link_label, seo_url(taxon), :class => 'breadcrumbs' %></h2>
+  <%= render :partial => "shared/products", :locals => {:products => taxon_preview(taxon, 4), :taxon => taxon} %>
+</div>
