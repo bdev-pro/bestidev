@@ -105,17 +105,6 @@ class ProductExport
     ret = ""
     begin
       elog "NEW export started"
-      # hash the sections
-      hsections = {}
-      sections_id = Taxon.find_by_name(ExportConfig::SECTION_TAXON).id      
-      sections = Taxon.select{|t| t.parent_id == sections_id} 
-      sections.each do |section|
-        searcher = Spree::Config.searcher_class.new(:taxon => section.id)
-        products = searcher.retrieve_products
-        products.each do |p|
-          hsections[p.id] = section.name
-        end
-      end
       csv_sep = ExportConfig::CSV_SEP
       # check the brands
       brands_id = Taxon.find_by_name(ExportConfig::BRAND_TAXON).id      # This is the id for "Marcas" 
@@ -137,8 +126,13 @@ class ProductExport
             num_prods += 1
             pi = ProductInfo.new(p, brand_folder) 
             elog " starting (#{num_prods}) #{p.sku} #{p.name}"
-            elog " no section for #{p.name}", :warn if hsections[p.id].nil?
-            pstr = [hsections[p.id] || "", pi.to_csv_str(csv_sep)].join(csv_sep)
+            if p.taxons.empty?  
+              elog " no section for #{p.name}", :warn 
+              sections = ""
+            else
+              sections = p.taxons.map{|t| t.permalink}.join(" ")
+            end
+            pstr = [sections || "", pi.to_csv_str(csv_sep)].join(csv_sep)
             f_full.puts [brand.name, pstr].join(csv_sep)
             f.puts pstr 
             elog "export descriptions"

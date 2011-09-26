@@ -43,6 +43,19 @@ class UploadMonitor
       log "#{taxon_name} not associated to #{@product.name}", :warn
     end
   end
+  def associate_subcategory(taxonomy_name, parent_taxon_name, taxon_name)
+    taxon = Taxon.find_or_create_by_name_and_parent_id_and_taxonomy_id(
+      taxon_name, 
+      Taxon.find_by_name(parent_taxon_name).id,
+      Taxonomy.find_by_name(taxonomy_name) 
+    )
+    if taxon.save
+      @product.taxons << taxon 
+      log "#{taxon_name} associated to #{@product.name}"
+    else
+      log "#{taxon_name} not associated to #{@product.name}", :warn
+    end
+  end
   def find_and_attach_image(filename, product, alt_desc = "")
     #An image has an attachment (duh) and some object which 'views' it
     product_image = Image.new({:attachment => File.open(filename, 'rb'), 
@@ -201,7 +214,11 @@ class ProductUpload #< ActiveRecord::Base
         if section.nil? or section.empty?
           m.log("No section (Productos) associated to this product", :warn)
         else
-          m.associate_this_taxon(ExportConfig::SECTION_TAXON, section)
+          category, subcategory = section.split("/")
+          # Productos is the parent, taxon the category to which we attach
+          m.associate_this_taxon(ExportConfig::SECTION_TAXON, category)
+          # taxon is the parent, subtaxon the category to which we attach
+          m.associate_subcategory(ExportConfig::SECTION_TAXON, category, subcategory) unless subcategory.empty?
         end
         m.associate_this_taxon(ExportConfig::BRAND_TAXON, m.brand)
 
