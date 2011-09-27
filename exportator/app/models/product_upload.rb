@@ -51,9 +51,9 @@ class UploadMonitor
     )
     if taxon.save
       @product.taxons << taxon 
-      log "#{taxon_name} associated to #{@product.name}"
+      log "subcategory #{taxon_name} associated to #{@product.name}"
     else
-      log "#{taxon_name} not associated to #{@product.name}", :warn
+      log "subcategory #{taxon_name} not associated to #{@product.name}", :warn
     end
   end
   def find_and_attach_image(filename, product, alt_desc = "")
@@ -218,8 +218,13 @@ class ProductUpload #< ActiveRecord::Base
           # Productos is the parent, taxon the category to which we attach
           m.associate_this_taxon(ExportConfig::SECTION_TAXON, category)
           # taxon is the parent, subtaxon the category to which we attach
-          m.associate_subcategory(ExportConfig::SECTION_TAXON, category, subcategory) unless subcategory.empty?
+          unless subcategory.nil?
+            unless subcategory.empty?
+              m.associate_subcategory(ExportConfig::SECTION_TAXON, category, subcategory)
+            end
+          end
         end
+        m.log "sections associated for #{m.product.sku}"
         m.associate_this_taxon(ExportConfig::BRAND_TAXON, m.brand)
 
         # now images (one single folder for all images including those from the variants)
