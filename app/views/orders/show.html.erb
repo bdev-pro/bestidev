@@ -1,0 +1,37 @@
+<!-- Google Code for Checkout exitoso Conversion Page -->
+<script type="text/javascript">
+  /* <![CDATA[ */
+  var google_conversion_id = 973628581;
+  var google_conversion_language = "es";
+  var google_conversion_format = "2";
+  var google_conversion_color = "ffffff";
+  var google_conversion_label = "rDTaCNPWoQMQpcmh0AM";
+  var google_conversion_value = 0;
+  /* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+  <div style="display:inline;">
+    <img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/973628581/?label=rDTaCNPWoQMQpcmh0AM&amp;guid=ON&amp;script=0"/>
+  </div>
+</noscript>
+<!--End Google Code for Checkout Exitoso -->
+
+
+<div id="order">
+  <%= link_to t('back_to_store'), products_path %> 
+
+  <% if params.has_key? :checkout_complete %>
+  	<br/><br/>
+  	<h3><%= t('thank_you_for_your_order') %></h3>         
+  <% else %>
+  	| <%= link_to t('my_account'), account_path if current_user%>
+  <% end %>
+  <br/><br/>
+
+  <%= render :partial => 'shared/order_details', :locals => {:order => @order} %>
+
+  <br/>
+  <%= link_to t('back_to_store'), products_path %>
+</div>
