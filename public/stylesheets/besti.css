@@ -14,12 +14,12 @@ body {
 }
 
 #menu_cab{
-	width:43%;
+	width:53%;
   color:white;
-	margin-left:60px;
+	margin-left:10px;
 	background:black;
 	border:1px solid #eee;
-	font-size:1.3em;
+	font-size:1.2em;
 	float:left;
 }
 
