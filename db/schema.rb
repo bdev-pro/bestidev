@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110817231045) do
+ActiveRecord::Schema.define(:version => 20111220204252) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -308,7 +308,7 @@ ActiveRecord::Schema.define(:version => 20110817231045) do
   add_index "product_scopes", ["product_group_id"], :name => "index_product_scopes_on_product_group_id"
 
   create_table "products", :force => true do |t|
-    t.string   "name",                 :default => "", :null => false
+    t.string   "name",                 :default => "",    :null => false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -319,9 +319,10 @@ ActiveRecord::Schema.define(:version => 20110817231045) do
     t.datetime "deleted_at"
     t.string   "meta_description"
     t.string   "meta_keywords"
-    t.integer  "count_on_hand",        :default => 0,  :null => false
+    t.integer  "count_on_hand",        :default => 0,     :null => false
     t.integer  "visibility",           :default => 5
     t.decimal  "old_price"
+    t.boolean  "show_on_homepage",     :default => false, :null => false
   end
 
   add_index "products", ["available_on"], :name => "index_products_on_available_on"
